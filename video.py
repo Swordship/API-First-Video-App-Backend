@@ -68,7 +68,7 @@ def get_video_stream(user_id, video_id):
     
     Returns:
     {
-        "stream_url": "https://www.youtube.com/embed/...",
+        "stream_url": "https://www.youtube-nocookie.com/embed/...",
         "video_id": "..."
     }
     """
@@ -99,7 +99,11 @@ def get_video_stream(user_id, video_id):
         # Generate YouTube embed URL (abstracted from frontend)
         # Frontend NEVER sees the raw youtube_id - only gets embed URL
         youtube_id = video['youtube_id']
-        stream_url = f"https://www.youtube.com/embed/{youtube_id}?autoplay=0&controls=1"
+        
+        # FIXED: Use youtube-nocookie.com for better mobile embed support
+        # Added playsinline=1 for mobile inline playback
+        # Added enablejsapi=1 for better JavaScript API compatibility
+        stream_url = f"https://www.youtube-nocookie.com/embed/{youtube_id}?autoplay=0&controls=1&playsinline=1&enablejsapi=1"
         
         return jsonify({
             'stream_url': stream_url,

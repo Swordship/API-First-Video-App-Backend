@@ -12,22 +12,25 @@ def seed_videos():
     result = videos_collection.delete_many({})
     print(f"Cleared {result.deleted_count} existing videos")
     
-    # Video 1: Y Combinator - How to Start a Startup
+    # FIXED: Using open-source videos that ALWAYS allow embedding
+    # These videos are specifically made for testing and will work in WebView
+    
+    # Video 1: Big Buck Bunny (Open source, always works)
     video1 = {
-        'title': 'How to Start a Startup',
-        'description': 'Learn the fundamentals of building a successful startup from Y Combinator',
-        'youtube_id': 'CBYhVcO4WgI',  # Real YouTube video
-        'thumbnail_url': 'https://i.ytimg.com/vi/CBYhVcO4WgI/hqdefault.jpg',
+        'title': 'Big Buck Bunny',
+        'description': 'Open source animated short film',
+        'youtube_id': 'aqz-KE-bpKQ',  # Known to work in embeds
+        'thumbnail_url': 'https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg',
         'is_active': True,
         'created_at': datetime.utcnow()
     }
     
-    # Video 2: Steve Jobs - Stanford Commencement Speech
+    # Video 2: Sintel (Open source, always works)
     video2 = {
-        'title': 'Steve Jobs Stanford Commencement Speech',
-        'description': 'Inspirational speech about connecting the dots and following your passion',
-        'youtube_id': 'UF8uR6Z6KLc',  # Real YouTube video
-        'thumbnail_url': 'https://i.ytimg.com/vi/UF8uR6Z6KLc/hqdefault.jpg',
+        'title': 'Sintel',
+        'description': 'Open source animated short film',
+        'youtube_id': 'eRsGyueVLvQ',  # Known to work in embeds
+        'thumbnail_url': 'https://i.ytimg.com/vi/eRsGyueVLvQ/hqdefault.jpg',
         'is_active': True,
         'created_at': datetime.utcnow()
     }
