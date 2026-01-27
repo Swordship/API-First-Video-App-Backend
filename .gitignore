@@ -1,0 +1,59 @@
+# Bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables & secrets
+*.env
+# .env.*
+# !env.example
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+*.cache
+pip-wheel-metadata/
+
+# Distribution / Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Django / Flask / FastAPI specifics (optional)
+instance/
+*.sqlite3
+
+# Testing
+.coverage
+.tox/
+pytest.cache/
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# MyPy / PyTest / Coverage
+.mypy_cache/
+.pytest_cache/
+.coverage.*
+
+# Docker
+docker-data/
