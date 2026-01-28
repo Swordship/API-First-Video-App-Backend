@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# Environment files
+.env
+*.env
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+htmlcov/
+
+# Cache
+.cache/
+pip-wheel-metadata/
+*.cache
+
+# Temporary files
+*.tmp
+*.temp
+.ipynb_checkpoints/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation (optional - include if you want docs in image)
+*.md
+!README.md
+
+# Docker files themselves
+Dockerfile
+.dockerignore
+docker-compose.yml

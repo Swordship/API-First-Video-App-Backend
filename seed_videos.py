@@ -2,35 +2,34 @@ from models import videos_collection
 from datetime import datetime
 
 def seed_videos():
-    """Seed database with 2 test videos"""
+    """Seed database with 2 startup-focused videos"""
     
     print("=" * 50)
-    print("🌱 Seeding database with test videos...")
+    print("🌱 Seeding database with startup videos...")
     print("=" * 50)
     
     # Clear existing videos (optional - for clean testing)
     result = videos_collection.delete_many({})
     print(f"Cleared {result.deleted_count} existing videos")
     
-    # FIXED: Using open-source videos that ALWAYS allow embedding
-    # These videos are specifically made for testing and will work in WebView
-    
-    # Video 1: Big Buck Bunny (Open source, always works)
+    # Video 1: Y Combinator - How to Start a Startup
+    # This is Sam Altman's famous lecture series at Stanford
     video1 = {
-        'title': 'Big Buck Bunny',
-        'description': 'Open source animated short film',
-        'youtube_id': 'aqz-KE-bpKQ',  # Known to work in embeds
-        'thumbnail_url': 'https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg',
+        'title': 'How to Start a Startup - Sam Altman (Y Combinator)',
+        'description': 'Learn the fundamentals of building a successful startup from Y Combinator president Sam Altman. Covers ideas, products, teams, and execution strategies used by the world\'s most successful startups.',
+        'youtube_id': 'CBYhVcO4WgI',  # Sam Altman's lecture at Stanford
+        'thumbnail_url': 'https://i.ytimg.com/vi/CBYhVcO4WgI/hqdefault.jpg',
         'is_active': True,
         'created_at': datetime.utcnow()
     }
     
-    # Video 2: Sintel (Open source, always works)
+    # Video 2: Steve Jobs - Stanford Commencement Speech
+    # Inspirational speech about entrepreneurship and following your passion
     video2 = {
-        'title': 'Sintel',
-        'description': 'Open source animated short film',
-        'youtube_id': 'eRsGyueVLvQ',  # Known to work in embeds
-        'thumbnail_url': 'https://i.ytimg.com/vi/eRsGyueVLvQ/hqdefault.jpg',
+        'title': 'Steve Jobs Stanford Commencement Address',
+        'description': 'Steve Jobs delivers an inspiring commencement speech at Stanford University about connecting the dots, love and loss, and living each day as if it were your last. A must-watch for aspiring entrepreneurs.',
+        'youtube_id': 'UF8uR6Z6KLc',  # Steve Jobs Stanford speech
+        'thumbnail_url': 'https://i.ytimg.com/vi/UF8uR6Z6KLc/hqdefault.jpg',
         'is_active': True,
         'created_at': datetime.utcnow()
     }

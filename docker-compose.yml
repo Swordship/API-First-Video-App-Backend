@@ -1,0 +1,56 @@
+version: '3.8'  # Docker Compose file format version
+
+services:  # "services" = containers we want to run
+
+  # Service 1: MongoDB
+  mongodb:
+    image: mongo:7.0  # Download official MongoDB 7.0 from Docker Hub
+    container_name: video-app-mongodb  # Give it a friendly name
+    restart: unless-stopped  # Auto-restart if it crashes
+    ports:
+      - "27017:27017"  # Expose port: YOUR_COMPUTER:CONTAINER
+                       # Makes MongoDB accessible at localhost:27017
+    environment:
+      MONGO_INITDB_DATABASE: video_app  # Create database named "video_app"
+    volumes:
+      - mongodb_data:/data/db  # Save data to persistent volume
+                               # (data survives container restarts)
+    networks:
+      - video-app-network  # Put on custom network
+    healthcheck:  # Check if MongoDB is ready
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/video_app --quiet
+      interval: 10s  # Check every 10 seconds
+      timeout: 5s
+      retries: 5
+
+  # Service 2: Flask Backend
+  backend:
+    build:
+      context: ./  # Build from current directory
+      dockerfile: Dockerfile  # Use our Dockerfile
+    container_name: video-app-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"  # Expose Flask on port 5000
+    environment:
+      # Environment variables for the backend
+      - MONGODB_URI=mongodb://mongodb:27017/video_app
+        # "mongodb" here refers to the service name above
+        # Docker DNS resolves "mongodb" to the container's IP
+      - JWT_SECRET_KEY=your_secret_key
+      - FLASK_ENV=production
+    depends_on:
+      mongodb:
+        condition: service_healthy  # Wait for MongoDB to be ready
+    networks:
+      - video-app-network  # Same network as MongoDB
+    command: sh -c "python seed_videos.py && python app.py"
+             # First seed the database, then start Flask
+
+volumes:
+  mongodb_data:  # Named volume for MongoDB data persistence
+    driver: local  # Store on local disk
+
+networks:
+  video-app-network:  # Custom network for service communication
+    driver: bridge
